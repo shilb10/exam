@@ -1,0 +1,364 @@
+/* Enhanced styles for offline examination system */
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.workblock {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.borderright {
+    border-right: 2px solid #e9ecef;
+    padding-right: 30px;
+}
+
+.instructions-section h1 {
+    color: #2c3e50;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.instructions-section h3 {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.redunderline {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    margin: 20px 0;
+    border-radius: 2px;
+}
+
+.instruction-list {
+    color: #34495e;
+    font-size: 1rem;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+.instruction-list .instruction-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-left: 4px solid #3498db;
+    border-radius: 5px;
+}
+
+.exam-form-section h1 {
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    min-height: 50px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    line-height: 1.4;
+}
+
+/* Specific styling for select elements */
+.form-control select {
+    width: 100%;
+    height: auto;
+    min-height: 54px;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Custom dropdown arrow */
+.form-control {
+    position: relative;
+}
+
+.form-control select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    outline: none;
+}
+
+.form-control:hover {
+    border-color: #bdc3c7;
+}
+
+.btn-proceed {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-height: 55px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-proceed:hover {
+    background: linear-gradient(45deg, #2980b9, #1f618d);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    color: white;
+}
+
+.btn-proceed:active {
+    transform: translateY(0);
+}
+
+.loading-spinner {
+    display: none;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.status-indicator {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.status-online {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-offline {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.homecopyright {
+    background: rgba(44, 62, 80, 0.9);
+    color: #ecf0f1;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .borderright {
+        border-right: none;
+        border-bottom: 2px solid #e9ecef;
+        padding-right: 0;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+    }
+
+    .main-container {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    .workblock {
+        padding: 20px;
+    }
+
+    .instructions-section h1,
+    .exam-form-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .form-control {
+        padding: 8px 12px;
+        font-size: 1rem;
+        min-height: 48px;
+    }
+
+    .form-control select {
+        min-height: 50px;
+        padding: 8px 12px;
+        font-size: 1rem;
+        padding-right: 35px;
+        background-size: 14px;
+        background-position: right 12px center;
+    }
+
+    .btn-proceed {
+        padding: 14px 40px;
+        font-size: 1.1rem;
+        min-height: 50px;
+        width: 100%;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+}
+
+/* Animation for form elements */
+.form-control,
+.btn-proceed {
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced option styling */
+.form-control option {
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    min-height: 40px;
+}
+
+/* Success and error states */
+.form-control.success {
+    border-color: #27ae60;
+}
+
+.form-control.error {
+    border-color: #e74c3c;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.success-message {
+    color: #27ae60;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Additional fixes for select text visibility */
+.form-control select::-webkit-scrollbar {
+    width: 8px;
+}
+
+.form-control select::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.form-control select::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.form-control select::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Ensure select box content is not clipped */
+.form-control select {
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+/* Firefox specific fixes */
+.form-control select {
+    -moz-padding-start: 15px;
+    text-indent: 0px;
+    text-overflow: ellipsis;
+}
+
+/* IE/Edge specific fixes */
+.form-control select::-ms-expand {
+    display: none;
+}
+
+.form-control select::-ms-value {
+    background: transparent;
+    color: #2c3e50;
+}

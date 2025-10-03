@@ -1,0 +1,65 @@
+{
+  "paper_info": {
+    "id": "acid_base_properties_test1",
+    "name": "Acid and Base Properties - Test 1",
+    "duration": 55,
+    "total_questions": 4,
+    "subject": "Chemistry (Board)",
+    "topic": "Acids, Bases and Salts",
+    "class": "Class 10"
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "question": "Which of the following is a characteristic property of acids?",
+      "options": [
+        "They taste bitter",
+        "They turn red litmus blue",
+        "They turn blue litmus red",
+        "They feel soapy"
+      ],
+      "correct": 2,
+      "explanation": "Acids turn blue litmus paper red, which is a characteristic test for acids",
+      "marks": 1
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The chemical formula of hydrochloric acid is:",
+      "options": [
+        "H2SO4",
+        "HNO3",
+        "HCl",
+        "CH3COOH"
+      ],
+      "correct": 2,
+      "explanation": "HCl is the chemical formula for hydrochloric acid",
+      "marks": 1
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which gas is evolved when an acid reacts with a metal?",
+      "options": [
+        "Oxygen",
+        "Carbon dioxide",
+        "Hydrogen",
+        "Chlorine"
+      ],
+      "correct": 2,
+      "explanation": "When acids react with metals, hydrogen gas is evolved along with salt formation",
+      "marks": 1
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Sodium hydroxide (NaOH) is:",
+      "options": [
+        "A weak acid",
+        "A strong acid",
+        "A weak base",
+        "A strong base"
+      ],
+      "correct": 3,
+      "explanation": "Sodium hydroxide is a strong base that completely dissociates in water",
+      "marks": 1
+    }
+  ]
+}
