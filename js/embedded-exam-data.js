@@ -84,7 +84,7 @@ window.examData = {
                                     {
                                         "name": "Calculus Fundamentals - Test 1",
                                         "duration": 60,
-                                        "questions": 5,
+                                        "questions": 7,
                                         "jsonFile": "class_12_mathematics_calculus_test1.json"
                                     }
                                 ]
@@ -121,10 +121,7 @@ window.examData = {
     questions: {
         'class_10_physics_reflection_laws_test1.json': {
             "paper_info": {
-                "id": "reflection_laws_test1",
                 "name": "Laws of Reflection - Test 1",
-                "duration": 50,
-                "total_questions": 4,
                 "subject": "Physics (Board)",
                 "topic": "Light - Reflection and Refraction",
                 "class": "Class 10"
@@ -140,8 +137,7 @@ window.examData = {
                         "Light can be refracted"
                     ],
                     "correct": 0,
-                    "explanation": "The first law of reflection states that the incident ray, reflected ray and normal all lie in the same plane",
-                    "marks": 1
+                    "explanation": "The first law of reflection states that the incident ray, reflected ray and normal all lie in the same plane"
                 },
                 {
                     "type": "multiple_choice",
@@ -153,8 +149,7 @@ window.examData = {
                         "90°"
                     ],
                     "correct": 1,
-                    "explanation": "According to the second law of reflection, the angle of incidence equals the angle of reflection, so both are 30°",
-                    "marks": 1
+                    "explanation": "According to the second law of reflection, the angle of incidence equals the angle of reflection, so both are 30°"
                 },
                 {
                     "type": "multiple_choice",
@@ -166,8 +161,7 @@ window.examData = {
                         "180°"
                     ],
                     "correct": 1,
-                    "explanation": "When the angle of incidence is 45°, the angle of reflection is also 45°. The angle between incident and reflected rays is 45° + 45° = 90°",
-                    "marks": 1
+                    "explanation": "When the angle of incidence is 45°, the angle of reflection is also 45°. The angle between incident and reflected rays is 45° + 45° = 90°"
                 },
                 {
                     "type": "multiple_choice",
@@ -179,18 +173,14 @@ window.examData = {
                         "Partial reflection"
                     ],
                     "correct": 1,
-                    "explanation": "Irregular reflection (also called diffuse reflection) occurs when light rays fall on a rough surface and scatter in different directions",
-                    "marks": 1
+                    "explanation": "Irregular reflection (also called diffuse reflection) occurs when light rays fall on a rough surface and scatter in different directions"
                 }
             ]
         },
 
         'class_10_physics_spherical_mirrors_test1.json': {
             "paper_info": {
-                "id": "spherical_mirrors_test1",
                 "name": "Spherical Mirrors - Test 1",
-                "duration": 45,
-                "total_questions": 4,
                 "subject": "Physics (Board)",
                 "topic": "Light - Reflection and Refraction",
                 "class": "Class 10"
@@ -206,8 +196,7 @@ window.examData = {
                         "At infinity"
                     ],
                     "correct": 2,
-                    "explanation": "For a real image at the same distance as the object, the object should be placed at the center of curvature (2f = 40 cm)",
-                    "marks": 1
+                    "explanation": "For a real image at the same distance as the object, the object should be placed at the center of curvature ($2f = 40$ cm)"
                 },
                 {
                     "type": "multiple_choice",
@@ -219,8 +208,7 @@ window.examData = {
                         "∞"
                     ],
                     "correct": 0,
-                    "explanation": "A plane mirror produces an image of the same size as the object, so magnification = +1 (positive indicates erect image)",
-                    "marks": 1
+                    "explanation": "A plane mirror produces an image of the same size as the object, so magnification = +1 (positive indicates erect image)"
                 },
                 {
                     "type": "multiple_choice",
@@ -232,8 +220,7 @@ window.examData = {
                         "Cylindrical mirror"
                     ],
                     "correct": 1,
-                    "explanation": "Concave mirrors are used in car headlights because they can produce a parallel beam of light when the source is placed at the focus",
-                    "marks": 1
+                    "explanation": "Concave mirrors are used in car headlights because they can produce a parallel beam of light when the source is placed at the focus"
                 },
                 {
                     "type": "multiple_choice",
@@ -245,18 +232,14 @@ window.examData = {
                         "Virtual and erect"
                     ],
                     "correct": 3,
-                    "explanation": "A convex mirror always forms a virtual, erect, and diminished image regardless of the object position",
-                    "marks": 1
+                    "explanation": "A convex mirror always forms a virtual, erect, and diminished image regardless of the object position"
                 }
             ]
         },
 
         'class_10_chemistry_acid_base_properties_test1.json': {
             "paper_info": {
-                "id": "acid_base_properties_test1",
                 "name": "Acid and Base Properties - Test 1",
-                "duration": 55,
-                "total_questions": 4,
                 "subject": "Chemistry (Board)",
                 "topic": "Acids, Bases and Salts",
                 "class": "Class 10"
@@ -272,8 +255,7 @@ window.examData = {
                         "Release OH⁻ ions in water"
                     ],
                     "correct": 0,
-                    "explanation": "Acids turn blue litmus paper red. This is one of the characteristic properties of acids",
-                    "marks": 1
+                    "explanation": "Acids turn blue litmus paper red. This is one of the characteristic properties of acids"
                 },
                 {
                     "type": "multiple_choice",
@@ -285,8 +267,7 @@ window.examData = {
                         "1"
                     ],
                     "correct": 1,
-                    "explanation": "Pure water has a pH of 7 at 25°C, making it neutral (neither acidic nor basic)",
-                    "marks": 1
+                    "explanation": "Pure water has a pH of 7 at 25°C, making it neutral (neither acidic nor basic)"
                 },
                 {
                     "type": "multiple_choice",
@@ -298,8 +279,7 @@ window.examData = {
                         "Chlorine"
                     ],
                     "correct": 1,
-                    "explanation": "When zinc reacts with hydrochloric acid, hydrogen gas is evolved: Zn + 2HCl → ZnCl₂ + H₂",
-                    "marks": 1
+                    "explanation": "When zinc reacts with hydrochloric acid, hydrogen gas is evolved: Zn + 2HCl → ZnCl₂ + H₂"
                 },
                 {
                     "type": "multiple_choice",
@@ -311,18 +291,14 @@ window.examData = {
                         "Amphoteric"
                     ],
                     "correct": 1,
-                    "explanation": "Milk of magnesia [Mg(OH)₂] is basic in nature and is used as an antacid to neutralize excess stomach acid",
-                    "marks": 1
+                    "explanation": "Milk of magnesia [Mg(OH)₂] is basic in nature and is used as an antacid to neutralize excess stomach acid"
                 }
             ]
         },
 
         'class_06_math_numbers_basic_test1.json': {
             "paper_info": {
-                "id": "numbers_basic_test1",
                 "name": "Basic Numbers - Test 1",
-                "duration": 30,
-                "total_questions": 2,
                 "subject": "Elementary Mathematics",
                 "topic": "Numbers and Operations",
                 "class": "Class 06"
@@ -338,8 +314,7 @@ window.examData = {
                         "1"
                     ],
                     "correct": 1,
-                    "explanation": "The largest single-digit number is 9, as single-digit numbers range from 0 to 9",
-                    "marks": 1
+                    "explanation": "The largest single-digit number is 9, as single-digit numbers range from 0 to 9"
                 },
                 {
                     "type": "multiple_choice",
@@ -351,18 +326,14 @@ window.examData = {
                         "15"
                     ],
                     "correct": 2,
-                    "explanation": "12 is an even number because it is divisible by 2 (12 ÷ 2 = 6)",
-                    "marks": 1
+                    "explanation": "12 is an even number because it is divisible by 2 (12 ÷ 2 = 6)"
                 }
             ]
         },
 
         'class_12_mathematics_calculus_test1.json': {
             "paper_info": {
-                "id": "calculus_test1",
                 "name": "Calculus Fundamentals - Test 1",
-                "duration": 60,
-                "total_questions": 5,
                 "subject": "Mathematics (Advanced)",
                 "topic": "Calculus",
                 "class": "Class 12"
@@ -370,78 +341,94 @@ window.examData = {
             "questions": [
                 {
                     "type": "multiple_choice",
-                    "question": "The derivative of x² with respect to x is:",
+                    "question": "The derivative of $x^2$ with respect to $x$ is:",
                     "options": [
-                        "x",
-                        "2x",
-                        "x²",
-                        "2"
+                        "$x$",
+                        "$2x$",
+                        "$x^2$",
+                        "$2$"
                     ],
                     "correct": 1,
-                    "explanation": "Using the power rule d/dx(xⁿ) = nxⁿ⁻¹, the derivative of x² is 2x¹ = 2x",
-                    "marks": 1
+                    "explanation": "Using the power rule $\\frac{d}{dx}(x^n) = nx^{n-1}$, the derivative of $x^2$ is $2x^1 = 2x$"
                 },
                 {
                     "type": "multiple_choice",
-                    "question": "<math xmlns='http://www.w3.org/1998/Math/MathML'><mo>∫</mo><mn>2</mn><mi>x</mi><mo> </mo><mi>d</mi><mi>x</mi><mo>=</mo></math>",
+                    "question": "$\\int 2x \\, dx =$",
                     "options": [
-                        "<math xmlns='http://www.w3.org/1998/Math/MathML'><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>C</mi></math>",
-                        "<math xmlns='http://www.w3.org/1998/Math/MathML'><mn>2</mn><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>C</mi></math>",
-                        "<math xmlns='http://www.w3.org/1998/Math/MathML'><mfrac><msup><mi>x</mi><mn>2</mn></msup><mn>2</mn></mfrac><mo>+</mo><mi>C</mi></math>",
-                        "<math xmlns='http://www.w3.org/1998/Math/MathML'><mn>2</mn><mi>x</mi><mo>+</mo><mi>C</mi></math>"
+                        "$x^2 + C$",
+                        "$2x^2 + C$",
+                        "$\\frac{x^2}{2} + C$",
+                        "$2x + C$"
                     ],
                     "correct": 0,
-                    "explanation": "<math xmlns='http://www.w3.org/1998/Math/MathML'><mo>∫</mo><mn>2</mn><mi>x</mi><mo> </mo><mi>d</mi><mi>x</mi><mo>=</mo><mn>2</mn><mo>∫</mo><mi>x</mi><mo> </mo><mi>d</mi><mi>x</mi><mo>=</mo><mn>2</mn><mo>(</mo><mfrac><msup><mi>x</mi><mn>2</mn></msup><mn>2</mn></mfrac><mo>)</mo><mo>+</mo><mi>C</mi><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>C</mi></math>",
-                    "marks": 1
+                    "explanation": "$\\int 2x \\, dx = 2\\int x \\, dx = 2\\left(\\frac{x^2}{2}\\right) + C = x^2 + C$"
                 },
                 {
                     "type": "multiple_choice",
-                    "question": "The limit of <math xmlns='http://www.w3.org/1998/Math/MathML'><mfrac><mrow><mi>sin</mi><mo> </mo><mi>x</mi></mrow><mi>x</mi></mfrac></math> as <math xmlns='http://www.w3.org/1998/Math/MathML'><mi>x</mi></math> approaches <math xmlns='http://www.w3.org/1998/Math/MathML'><mn>0</mn></math> is:",
+                    "question": "The limit of $\\frac{\\sin x}{x}$ as $x$ approaches $0$ is:",
                     "options": [
-                        "<math xmlns='http://www.w3.org/1998/Math/MathML'><mn>0</mn></math>",
-                        "<math xmlns='http://www.w3.org/1998/Math/MathML'><mn>1</mn></math>",
-                        "<math xmlns='http://www.w3.org/1998/Math/MathML'><mo>∞</mo></math>",
+                        "$0$",
+                        "$1$",
+                        "$\\infty$",
                         "Does not exist"
                     ],
                     "correct": 1,
-                    "explanation": "This is a standard limit: <math xmlns='http://www.w3.org/1998/Math/MathML'><munder><mi>lim</mi><mrow><mi>x</mi><mo>→</mo><mn>0</mn></mrow></munder><mfrac><mrow><mi>sin</mi><mo> </mo><mi>x</mi></mrow><mi>x</mi></mfrac><mo>=</mo><mn>1</mn></math>",
-                    "marks": 1
+                    "explanation": "This is a standard limit: $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$"
                 },
                 {
                     "type": "multiple_choice",
-                    "question": "If f(x) = 3x² + 2x + 1, then f'(x) =",
+                    "question": "If $f(x) = 3x^2 + 2x + 1$, then $f'(x) =$",
                     "options": [
-                        "6x + 2",
-                        "3x + 2",
-                        "6x + 1",
-                        "3x² + 1"
+                        "$6x + 2$",
+                        "$3x + 2$",
+                        "$6x + 1$",
+                        "$3x^2 + 1$"
                     ],
                     "correct": 0,
-                    "explanation": "f'(x) = d/dx(3x²) + d/dx(2x) + d/dx(1) = 6x + 2 + 0 = 6x + 2",
-                    "marks": 1
+                    "explanation": "$f'(x) = \\frac{d}{dx}(3x^2) + \\frac{d}{dx}(2x) + \\frac{d}{dx}(1) = 6x + 2 + 0 = 6x + 2$"
                 },
                 {
                     "type": "multiple_choice",
-                    "question": "The area under the curve y = 2 from x = 0 to x = 3 is:",
+                    "question": "The area under the curve $y = 2$ from $x = 0$ to $x = 3$ is:",
                     "options": [
-                        "2",
-                        "3",
-                        "6",
-                        "5"
+                        "$2$",
+                        "$3$",
+                        "$6$",
+                        "$5$"
                     ],
                     "correct": 2,
-                    "explanation": "Area = ∫₀³ 2 dx = 2x|₀³ = 2(3) - 2(0) = 6",
-                    "marks": 1
+                    "explanation": "Area = $\\int_0^3 2 \\, dx = 2x\\Big|_0^3 = 2(3) - 2(0) = 6$"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "What is the value of $\\lim_{x \\to \\infty} \\frac{2x^2 + 3x + 1}{x^2 + 5}$?",
+                    "options": [
+                        "$0$",
+                        "$1$",
+                        "$2$",
+                        "$\\infty$"
+                    ],
+                    "correct": 2,
+                    "explanation": "Divide numerator and denominator by $x^2$: $\\lim_{x \\to \\infty} \\frac{2 + \\frac{3}{x} + \\frac{1}{x^2}}{1 + \\frac{5}{x^2}} = \\frac{2 + 0 + 0}{1 + 0} = 2$"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The solution to the differential equation $\\frac{dy}{dx} = ky$ is:",
+                    "options": [
+                        "$y = Ce^{kx}$",
+                        "$y = Cx^k$",
+                        "$y = C + kx$",
+                        "$y = C\\ln(kx)$"
+                    ],
+                    "correct": 0,
+                    "explanation": "This is a separable differential equation. Separating variables: $\\frac{dy}{y} = k \\, dx$. Integrating both sides: $\\ln|y| = kx + C_1$, so $y = Ce^{kx}$"
                 }
             ]
         },
 
         'general_history_ancient_india_test1.json': {
             "paper_info": {
-                "id": "ancient_india_test1",
                 "name": "Ancient India - Test 1",
-                "duration": 45,
-                "total_questions": 4,
                 "subject": "General Knowledge",
                 "topic": "Indian History",
                 "class": "General Knowledge & Aptitude"
@@ -457,8 +444,7 @@ window.examData = {
                         "Gupta Civilization"
                     ],
                     "correct": 1,
-                    "explanation": "The Indus Valley Civilization is also called the Harappan Civilization, named after Harappa, one of the first sites discovered",
-                    "marks": 1
+                    "explanation": "The Indus Valley Civilization is also called the Harappan Civilization, named after Harappa, one of the first sites discovered"
                 },
                 {
                     "type": "multiple_choice",
@@ -470,8 +456,7 @@ window.examData = {
                         "Chanakya"
                     ],
                     "correct": 1,
-                    "explanation": "Chandragupta Maurya founded the Mauryan Empire around 321 BCE with the help of his advisor Chanakya",
-                    "marks": 1
+                    "explanation": "Chandragupta Maurya founded the Mauryan Empire around 321 BCE with the help of his advisor Chanakya"
                 },
                 {
                     "type": "multiple_choice",
@@ -483,8 +468,7 @@ window.examData = {
                         "Kalidasa"
                     ],
                     "correct": 2,
-                    "explanation": "The Arthashastra, a treatise on economics, politics and military strategy, was written by Chanakya (also known as Kautilya)",
-                    "marks": 1
+                    "explanation": "The Arthashastra, a treatise on economics, politics and military strategy, was written by Chanakya (also known as Kautilya)"
                 },
                 {
                     "type": "multiple_choice",
@@ -496,8 +480,7 @@ window.examData = {
                         "Bronze Age of India"
                     ],
                     "correct": 1,
-                    "explanation": "The Gupta period (4th-6th centuries CE) is called the Golden Age of India due to significant achievements in arts, science, and literature",
-                    "marks": 1
+                    "explanation": "The Gupta period (4th-6th centuries CE) is called the Golden Age of India due to significant achievements in arts, science, and literature"
                 }
             ]
         }
