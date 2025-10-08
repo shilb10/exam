@@ -560,6 +560,33 @@ window.offlineExamSystem = {
     },
 
     // Display results
+    // Process mathematical expressions before displaying
+    processMathExpressions: function(text) {
+        if (!text || typeof text !== 'string') return text;
+
+        return text
+            .replace(/\$\$([^$]+)\$\$/g, (match, tex) => {
+                try {
+                    if (window.katex) {
+                        return window.katex.renderToString(tex, { displayMode: true });
+                    }
+                } catch (e) {
+                    console.error('KaTeX display math error:', e, 'for:', tex);
+                }
+                return match;
+            })
+            .replace(/\$([^$]+?)\$/g, (match, tex) => {
+                try {
+                    if (window.katex) {
+                        return window.katex.renderToString(tex, { displayMode: false });
+                    }
+                } catch (e) {
+                    console.error('KaTeX inline math error:', e, 'for:', tex);
+                }
+                return match;
+            });
+    },
+
     displayResults: function(results) {
         document.body.innerHTML = `
             <!DOCTYPE html>
@@ -568,15 +595,15 @@ window.offlineExamSystem = {
                 <meta charset="utf-8">
                 <title>Exam Results - ${results.details.paperName}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                
+
                 <!-- KaTeX CSS -->
                 <link rel="stylesheet" href="js/katex/katex.min.css">
-                
+
                 <link href="css/bootstrap.css" rel="stylesheet">
                 <link href="css/style.css" rel="stylesheet">
                 <link href="css/enhanced-style.css" rel="stylesheet">
                 <link href="css/exam-interface.css" rel="stylesheet">
-                
+
                 <style>
                     .fas, .far, .fab, .fa {
                         display: inline-block;
@@ -589,7 +616,7 @@ window.offlineExamSystem = {
                     .fa-trophy::before { content: "🏆"; }
                     .fa-print::before { content: "🖨"; }
                     .fa-home::before { content: "🏠"; }
-                    
+
                     /* Question Review Styles */
                     .question-review {
                         margin-top: 30px;
@@ -763,70 +790,45 @@ window.offlineExamSystem = {
                         </button>
                     </div>
                 </div>
-                
+
                 <!-- KaTeX JavaScript -->
                 <script src="js/katex/katex.min.js"></script>
                 <script>
-                    // KaTeX rendering functions for results page
-                    function renderMathInElement(element) {
-                        if (!element) return Promise.resolve();
-                        
-                        try {
-                            const walker = document.createTreeWalker(
-                                element,
-                                NodeFilter.SHOW_TEXT,
-                                null,
-                                false
-                            );
-                            
-                            const textNodes = [];
-                            let node;
-                            while (node = walker.nextNode()) {
-                                if (node.textContent.includes('$')) {
-                                    textNodes.push(node);
-                                }
-                            }
-                            
-                            textNodes.forEach(textNode => {
-                                const parent = textNode.parentNode;
-                                const text = textNode.textContent;
-                                
-                                let html = text
-                                    .replace(/\\$\\$([^$]+)\\$\\$/g, (match, tex) => {
+                    console.log('KaTeX results page loaded. Math should already be rendered.');
+
+                    // Simple fallback renderer for any missed expressions
+                    function renderRemainingMath() {
+                        const elements = document.querySelectorAll('*');
+                        elements.forEach(element => {
+                            if (element.innerHTML && element.innerHTML.includes('$')) {
+                                const originalHTML = element.innerHTML;
+                                const processedHTML = originalHTML
+                                    .replace(/\$\$([^$]+)\$\$/g, (match, tex) => {
                                         try {
                                             return katex.renderToString(tex, { displayMode: true });
                                         } catch (e) {
-                                            console.error('KaTeX display math error:', e);
+                                            console.error('Fallback display math error:', e);
                                             return match;
                                         }
                                     })
-                                    .replace(/\\$([^$]+)\\$/g, (match, tex) => {
+                                    .replace(/\$([^$]+?)\$/g, (match, tex) => {
                                         try {
                                             return katex.renderToString(tex, { displayMode: false });
                                         } catch (e) {
-                                            console.error('KaTeX inline math error:', e);
+                                            console.error('Fallback inline math error:', e);
                                             return match;
                                         }
                                     });
-                                
-                                if (html !== text) {
-                                    const span = document.createElement('span');
-                                    span.innerHTML = html;
-                                    parent.replaceChild(span, textNode);
+
+                                if (processedHTML !== originalHTML) {
+                                    element.innerHTML = processedHTML;
                                 }
-                            });
-                            
-                            return Promise.resolve();
-                        } catch (error) {
-                            console.error('KaTeX rendering error:', error);
-                            return Promise.resolve();
-                        }
+                            }
+                        });
                     }
-                    
-                    // Render math after page loads
-                    setTimeout(() => {
-                        renderMathInElement(document.body);
-                    }, 100);
+
+                    // Run fallback after a short delay
+                    setTimeout(renderRemainingMath, 100);
                 </script>
             </body>
             </html>
@@ -836,32 +838,32 @@ window.offlineExamSystem = {
     // Generate detailed question review
     generateQuestionReview: function(results) {
         let reviewHTML = '';
-        
+
         this.currentExam.questions.forEach((question, index) => {
             const userAnswer = this.userAnswers[index];
             const isCorrect = userAnswer === question.correct;
             const answerStatus = userAnswer !== undefined ? (isCorrect ? 'correct' : 'incorrect') : 'unanswered';
-            
+
             reviewHTML += `
                 <div class="question-review-item ${answerStatus}">
                     <div class="question-header">
                         <div class="question-number">Question ${index + 1}</div>
                         <div class="answer-status ${answerStatus}">
-                            ${answerStatus === 'correct' ? '✓ Correct' : 
+                            ${answerStatus === 'correct' ? '✓ Correct' :
                               answerStatus === 'incorrect' ? '✗ Incorrect' : '- Unanswered'}
                         </div>
                     </div>
-                    
+
                     <div class="question-text">
-                        ${question.question}
+                        ${this.processMathExpressions(question.question)}
                     </div>
-                    
+
                     <div class="options-review">
                         ${question.options.map((option, optIndex) => {
                             const isUserAnswer = userAnswer === optIndex;
                             const isCorrectAnswer = question.correct === optIndex;
                             let optionClass = '';
-                            
+
                             if (isCorrectAnswer) {
                                 optionClass = 'correct-answer';
                             } else if (isUserAnswer && !isCorrectAnswer) {
@@ -869,33 +871,33 @@ window.offlineExamSystem = {
                             } else if (isUserAnswer && isCorrectAnswer) {
                                 optionClass = 'user-correct-answer';
                             }
-                            
+
                             let indicator = '';
                             if (isCorrectAnswer) {
                                 indicator = '<span class="answer-indicator correct-indicator">✓ Correct Answer</span>';
                             } else if (isUserAnswer && !isCorrectAnswer) {
                                 indicator = '<span class="answer-indicator wrong-indicator">✗ Your Answer</span>';
                             }
-                            
+
                             return `
                                 <div class="option-review ${optionClass}">
                                     <div class="option-letter">${String.fromCharCode(65 + optIndex)}</div>
-                                    <div class="option-text">${option}</div>
+                                    <div class="option-text">${this.processMathExpressions(option)}</div>
                                     ${indicator}
                                 </div>
                             `;
                         }).join('')}
                     </div>
-                    
+
                     ${question.explanation ? `
                         <div class="explanation">
-                            <strong>Explanation:</strong> ${question.explanation}
+                            <strong>Explanation:</strong> ${this.processMathExpressions(question.explanation)}
                         </div>
                     ` : ''}
                 </div>
             `;
         });
-        
+
         return reviewHTML;
     }
 };
