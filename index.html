@@ -7,6 +7,9 @@
     <meta name="description" content="Offline Examination System for Ramakrishna Mission Home of Service">
     <link rel="shortcut icon" href="images/favicon.svg" type="image/svg+xml" />
 
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="js/katex/katex.min.css">
+
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
@@ -56,6 +59,76 @@
             display: none; /* Hidden since no network errors possible */
         }
     </style>
+
+    <!-- KaTeX JavaScript -->
+    <script src="js/katex/katex.min.js"></script>
+
+    <!-- KaTeX Math Rendering Functions -->
+    <script>
+        // Global KaTeX rendering functions
+        window.renderMathInElement = function(element) {
+            if (!element) return Promise.resolve();
+
+            try {
+                // Find all text nodes and render LaTeX
+                const walker = document.createTreeWalker(
+                    element,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+
+                const textNodes = [];
+                let node;
+                while (node = walker.nextNode()) {
+                    if (node.textContent.includes('$')) {
+                        textNodes.push(node);
+                    }
+                }
+
+                textNodes.forEach(textNode => {
+                    const parent = textNode.parentNode;
+                    const text = textNode.textContent;
+
+                    // Replace inline math $...$ and display math $$...$$
+                    let html = text
+                        .replace(/\$\$([^$]+)\$\$/g, (match, tex) => {
+                            try {
+                                return katex.renderToString(tex, { displayMode: true });
+                            } catch (e) {
+                                console.error('KaTeX display math error:', e, 'for:', tex);
+                                return match;
+                            }
+                        })
+                        .replace(/\$([^$]+)\$/g, (match, tex) => {
+                            try {
+                                return katex.renderToString(tex, { displayMode: false });
+                            } catch (e) {
+                                console.error('KaTeX inline math error:', e, 'for:', tex);
+                                return match;
+                            }
+                        });
+
+                    if (html !== text) {
+                        const span = document.createElement('span');
+                        span.innerHTML = html;
+                        parent.replaceChild(span, textNode);
+                    }
+                });
+
+                console.log('KaTeX rendering complete for element');
+                return Promise.resolve();
+            } catch (error) {
+                console.error('KaTeX rendering error:', error);
+                return Promise.resolve();
+            }
+        };
+
+        // Render math in entire document
+        window.renderAllMath = function() {
+            return window.renderMathInElement(document.body);
+        };
+    </script>
 
     <!-- Offline Exam System - No CORS Issues -->
     <script src="js/embedded-exam-data.js" type="text/javascript"></script>

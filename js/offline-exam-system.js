@@ -420,6 +420,14 @@ window.offlineExamSystem = {
         }
         optionsContainer.innerHTML = optionsHTML;
 
+        // Render math in questions and options using KaTeX
+        setTimeout(() => {
+            if (window.renderMathInElement) {
+                window.renderMathInElement(questionTextContainer);
+                window.renderMathInElement(optionsContainer);
+            }
+        }, 10);
+
         this.updateNavigationButtons();
         this.generateQuestionNavigator();
     },
@@ -623,5 +631,12 @@ window.offlineExamSystem = {
             </body>
             </html>
         `;
+
+        // Render math in results page using KaTeX
+        setTimeout(() => {
+            if (window.renderAllMath) {
+                window.renderAllMath();
+            }
+        }, 100);
     }
 };
