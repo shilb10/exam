@@ -543,20 +543,12 @@ window.offlineExamSystem = {
         const percentage = Math.round((correctAnswers / totalQuestions) * 100);
         const duration = Math.floor((new Date() - this.startTime) / 1000);
 
-        let grade = 'F';
-        if (percentage >= 90) grade = 'A+';
-        else if (percentage >= 80) grade = 'A';
-        else if (percentage >= 70) grade = 'B';
-        else if (percentage >= 60) grade = 'C';
-        else if (percentage >= 50) grade = 'D';
-
         return {
             correctAnswers,
             totalQuestions,
             answeredQuestions,
             unansweredQuestions: totalQuestions - answeredQuestions,
             percentage,
-            grade,
             duration,
             details: {
                 paperName: this.currentExam.info.name,
@@ -576,10 +568,15 @@ window.offlineExamSystem = {
                 <meta charset="utf-8">
                 <title>Exam Results - ${results.details.paperName}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
+                
+                <!-- KaTeX CSS -->
+                <link rel="stylesheet" href="js/katex/katex.min.css">
+                
                 <link href="css/bootstrap.css" rel="stylesheet">
                 <link href="css/style.css" rel="stylesheet">
                 <link href="css/enhanced-style.css" rel="stylesheet">
                 <link href="css/exam-interface.css" rel="stylesheet">
+                
                 <style>
                     .fas, .far, .fab, .fa {
                         display: inline-block;
@@ -592,6 +589,140 @@ window.offlineExamSystem = {
                     .fa-trophy::before { content: "🏆"; }
                     .fa-print::before { content: "🖨"; }
                     .fa-home::before { content: "🏠"; }
+                    
+                    /* Question Review Styles */
+                    .question-review {
+                        margin-top: 30px;
+                    }
+                    .question-review-item {
+                        border: 1px solid #ddd;
+                        margin-bottom: 20px;
+                        padding: 20px;
+                        border-radius: 8px;
+                        background-color: #fff;
+                    }
+                    .question-review-item.correct {
+                        border-left: 5px solid #28a745;
+                        background-color: #f8fff9;
+                    }
+                    .question-review-item.incorrect {
+                        border-left: 5px solid #dc3545;
+                        background-color: #fff8f8;
+                    }
+                    .question-review-item.unanswered {
+                        border-left: 5px solid #ffc107;
+                        background-color: #fffdf7;
+                    }
+                    .question-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 15px;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid #eee;
+                    }
+                    .question-number {
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: #333;
+                    }
+                    .answer-status {
+                        font-weight: bold;
+                        padding: 6px 12px;
+                        border-radius: 20px;
+                        font-size: 14px;
+                    }
+                    .answer-status.correct {
+                        color: #155724;
+                        background-color: #d4edda;
+                        border: 1px solid #c3e6cb;
+                    }
+                    .answer-status.incorrect {
+                        color: #721c24;
+                        background-color: #f8d7da;
+                        border: 1px solid #f5c6cb;
+                    }
+                    .answer-status.unanswered {
+                        color: #856404;
+                        background-color: #fff3cd;
+                        border: 1px solid #ffeaa7;
+                    }
+                    .question-text {
+                        font-size: 16px;
+                        margin-bottom: 20px;
+                        font-weight: 500;
+                        line-height: 1.5;
+                    }
+                    .options-review {
+                        margin-bottom: 20px;
+                    }
+                    .option-review {
+                        padding: 12px 15px;
+                        margin-bottom: 8px;
+                        border-radius: 6px;
+                        display: flex;
+                        align-items: center;
+                        border: 1px solid #e9ecef;
+                        background-color: #f8f9fa;
+                    }
+                    .option-review.correct-answer {
+                        background-color: #d4edda;
+                        color: #155724;
+                        border: 2px solid #28a745;
+                        font-weight: 500;
+                    }
+                    .option-review.user-wrong-answer {
+                        background-color: #f8d7da;
+                        color: #721c24;
+                        border: 2px solid #dc3545;
+                    }
+                    .option-review.user-correct-answer {
+                        background-color: #cce5ff;
+                        color: #004085;
+                        border: 2px solid #007bff;
+                        font-weight: 500;
+                    }
+                    .option-letter {
+                        font-weight: bold;
+                        margin-right: 12px;
+                        min-width: 25px;
+                        background-color: #fff;
+                        padding: 4px 8px;
+                        border-radius: 50%;
+                        text-align: center;
+                        font-size: 14px;
+                    }
+                    .option-text {
+                        flex: 1;
+                    }
+                    .answer-indicator {
+                        margin-left: auto;
+                        font-weight: bold;
+                        font-size: 16px;
+                    }
+                    .correct-indicator {
+                        color: #28a745;
+                    }
+                    .wrong-indicator {
+                        color: #dc3545;
+                    }
+                    .explanation {
+                        background-color: #e7f3ff;
+                        padding: 15px;
+                        border-radius: 6px;
+                        border-left: 4px solid #007bff;
+                        margin-top: 15px;
+                    }
+                    .explanation strong {
+                        color: #0056b3;
+                    }
+                    .score-summary .score-details p {
+                        margin-bottom: 8px;
+                    }
+                    @media print {
+                        .results-actions { display: none; }
+                        .question-review-item { page-break-inside: avoid; }
+                    }
                 </style>
             </head>
             <body>
@@ -611,12 +742,16 @@ window.offlineExamSystem = {
                             ${results.percentage}%
                         </div>
                         <div class="score-details">
-                            <p><strong>Grade:</strong> ${results.grade}</p>
-                            <p><strong>Correct Answers:</strong> ${results.correctAnswers} out of ${results.totalQuestions}</p>
+                            <p><strong>Score:</strong> ${results.correctAnswers} out of ${results.totalQuestions} correct</p>
                             <p><strong>Answered Questions:</strong> ${results.answeredQuestions}</p>
                             <p><strong>Unanswered Questions:</strong> ${results.unansweredQuestions}</p>
                             <p><strong>Time Taken:</strong> ${Math.floor(results.duration / 60)}:${(results.duration % 60).toString().padStart(2, '0')}</p>
                         </div>
+                    </div>
+
+                    <div class="question-review">
+                        <h3>Detailed Review</h3>
+                        ${this.generateQuestionReview(results)}
                     </div>
 
                     <div class="results-actions">
@@ -628,15 +763,139 @@ window.offlineExamSystem = {
                         </button>
                     </div>
                 </div>
+                
+                <!-- KaTeX JavaScript -->
+                <script src="js/katex/katex.min.js"></script>
+                <script>
+                    // KaTeX rendering functions for results page
+                    function renderMathInElement(element) {
+                        if (!element) return Promise.resolve();
+                        
+                        try {
+                            const walker = document.createTreeWalker(
+                                element,
+                                NodeFilter.SHOW_TEXT,
+                                null,
+                                false
+                            );
+                            
+                            const textNodes = [];
+                            let node;
+                            while (node = walker.nextNode()) {
+                                if (node.textContent.includes('$')) {
+                                    textNodes.push(node);
+                                }
+                            }
+                            
+                            textNodes.forEach(textNode => {
+                                const parent = textNode.parentNode;
+                                const text = textNode.textContent;
+                                
+                                let html = text
+                                    .replace(/\\$\\$([^$]+)\\$\\$/g, (match, tex) => {
+                                        try {
+                                            return katex.renderToString(tex, { displayMode: true });
+                                        } catch (e) {
+                                            console.error('KaTeX display math error:', e);
+                                            return match;
+                                        }
+                                    })
+                                    .replace(/\\$([^$]+)\\$/g, (match, tex) => {
+                                        try {
+                                            return katex.renderToString(tex, { displayMode: false });
+                                        } catch (e) {
+                                            console.error('KaTeX inline math error:', e);
+                                            return match;
+                                        }
+                                    });
+                                
+                                if (html !== text) {
+                                    const span = document.createElement('span');
+                                    span.innerHTML = html;
+                                    parent.replaceChild(span, textNode);
+                                }
+                            });
+                            
+                            return Promise.resolve();
+                        } catch (error) {
+                            console.error('KaTeX rendering error:', error);
+                            return Promise.resolve();
+                        }
+                    }
+                    
+                    // Render math after page loads
+                    setTimeout(() => {
+                        renderMathInElement(document.body);
+                    }, 100);
+                </script>
             </body>
             </html>
         `;
+    },
 
-        // Render math in results page using KaTeX
-        setTimeout(() => {
-            if (window.renderAllMath) {
-                window.renderAllMath();
-            }
-        }, 100);
+    // Generate detailed question review
+    generateQuestionReview: function(results) {
+        let reviewHTML = '';
+        
+        this.currentExam.questions.forEach((question, index) => {
+            const userAnswer = this.userAnswers[index];
+            const isCorrect = userAnswer === question.correct;
+            const answerStatus = userAnswer !== undefined ? (isCorrect ? 'correct' : 'incorrect') : 'unanswered';
+            
+            reviewHTML += `
+                <div class="question-review-item ${answerStatus}">
+                    <div class="question-header">
+                        <div class="question-number">Question ${index + 1}</div>
+                        <div class="answer-status ${answerStatus}">
+                            ${answerStatus === 'correct' ? '✓ Correct' : 
+                              answerStatus === 'incorrect' ? '✗ Incorrect' : '- Unanswered'}
+                        </div>
+                    </div>
+                    
+                    <div class="question-text">
+                        ${question.question}
+                    </div>
+                    
+                    <div class="options-review">
+                        ${question.options.map((option, optIndex) => {
+                            const isUserAnswer = userAnswer === optIndex;
+                            const isCorrectAnswer = question.correct === optIndex;
+                            let optionClass = '';
+                            
+                            if (isCorrectAnswer) {
+                                optionClass = 'correct-answer';
+                            } else if (isUserAnswer && !isCorrectAnswer) {
+                                optionClass = 'user-wrong-answer';
+                            } else if (isUserAnswer && isCorrectAnswer) {
+                                optionClass = 'user-correct-answer';
+                            }
+                            
+                            let indicator = '';
+                            if (isCorrectAnswer) {
+                                indicator = '<span class="answer-indicator correct-indicator">✓ Correct Answer</span>';
+                            } else if (isUserAnswer && !isCorrectAnswer) {
+                                indicator = '<span class="answer-indicator wrong-indicator">✗ Your Answer</span>';
+                            }
+                            
+                            return `
+                                <div class="option-review ${optionClass}">
+                                    <div class="option-letter">${String.fromCharCode(65 + optIndex)}</div>
+                                    <div class="option-text">${option}</div>
+                                    ${indicator}
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                    
+                    ${question.explanation ? `
+                        <div class="explanation">
+                            <strong>Explanation:</strong> ${question.explanation}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        });
+        
+        return reviewHTML;
     }
 };
